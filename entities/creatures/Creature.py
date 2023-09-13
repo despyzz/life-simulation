@@ -1,7 +1,7 @@
 from abc import ABC
 
-from Coordinates import Coordinates
-from Entity import Entity
+from simulation.Coordinates import Coordinates
+from entities.Entity import Entity
 
 
 class Creature(Entity, ABC):
