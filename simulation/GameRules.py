@@ -9,6 +9,13 @@ class GameRules:
         else:
             raise TypeError
 
+    def __copy__(self):
+        return GameRules(self.__map_size, self.__entities_counts)
+
     @property
     def entities_counts(self):
         return dict(self.__entities_counts)
+
+    @property
+    def map_size(self):
+        return self.__map_size

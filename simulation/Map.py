@@ -1,3 +1,4 @@
+from entities.Entity import Entity
 from simulation.Coordinates import Coordinates
 
 
@@ -15,4 +16,13 @@ class Map:
     def __copy__(self) -> object:
         return Map(self.__entities)
 
-    def pop_from(self, coordinates: Coordinates):
+    def pop_from(self, coordinates: Coordinates) -> Entity:
+        if coordinates not in self.__entities.keys():
+            raise ValueError
+        entity = self.__entities.pop(coordinates)
+        return entity
+
+    def set_to(self, coordinates: Coordinates, entity: Entity) -> None:
+        if coordinates in self.__entities.keys():
+            raise ValueError
+        self.__entities[coordinates] = entity

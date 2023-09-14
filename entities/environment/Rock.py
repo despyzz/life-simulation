@@ -3,5 +3,5 @@ from entities.Entity import Entity
 
 
 class Rock(Entity):
-    def __init__(self, coordinates: Coordinates) -> None:
-        super().__init__(coordinates)
+    def __init__(self) -> None:
+        super().__init__()
