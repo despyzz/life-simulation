@@ -34,8 +34,8 @@ class Simulation:
         self.__on_pause = True
 
     def next_turn(self):
-        # TurnActions
-        ...
+        self.__turn_actions.next_turn(self.__map)
+        self.__turn_counter.next_turn()
 
     @property
     def map(self):

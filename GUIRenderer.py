@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 from entities.creatures.Herbivore import Herbivore
 from entities.creatures.Predator import Predator
@@ -16,10 +17,11 @@ class GUIRenderer:
         self.__map_size = simulation.game_rules.map_size
 
         self.__root = tk.Tk()
+        self.__root.protocol("WM_DELETE_WINDOW", lambda: self.__root.destroy())
         self.__create_entities_map_canvas()
-        self.__create_buttions_frame()
+        self.__create_buttons_frame()
 
-    def __create_buttions_frame(self):
+    def __create_buttons_frame(self):
         self.__buttons_frame = tk.Frame(master=self.__root)
         self.__start_button = tk.Button(master=self.__buttons_frame,
                                         text='Start Simulation',
@@ -68,8 +70,7 @@ class GUIRenderer:
         turn_counter = self.__simulation.turn_counter
         self.__root.title(f'Turns: {turn_counter.counter}')
 
-    def render_simulation(self) -> None:
-        # switch buttons
+    def __switch_buttons(self):
         if self.__simulation.on_pause:
             self.__pause_button.config(state='disabled')
             self.__start_button.config(state='normal')
@@ -77,6 +78,8 @@ class GUIRenderer:
             self.__pause_button.config(state='normal')
             self.__start_button.config(state='disabled')
 
+    def render_simulation(self) -> None:
+        self.__switch_buttons()
         self.__render_turn_counter()
         self.__render_entities_map()
 
